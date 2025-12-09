@@ -4,7 +4,7 @@ const PORT = 3000;
 
 const API_URL_MAHASISWA1 = "https://vendor-a.vercel.app/api/warung";
 const API_URL_MAHASISWA2 = "https://vendor-b.vercel.app/api/products";
-const API_URL_MAHASISWA3 = "https://vendor-c-phi.vercel.app/api/resto";
+const API_URL_MAHASISWA3 = "https://vendor-c-phi.vercel.app/api/products";
 
 async function getDataMahasiswa1() {
     const res = await fetch(API_URL_MAHASISWA1);
@@ -35,7 +35,7 @@ async function getDataMahasiswa2() {
     return formattedData;
 }
 
- async function getDataMahasiswa3() {
+async function getDataMahasiswa3() {
      const res = await fetch(API_URL_MAHASISWA3);
      const data = await res.json();
      const formattedData = data.map(item => ({
@@ -46,10 +46,10 @@ async function getDataMahasiswa2() {
          sumber: "Vendor C",
      }));
 
-     return formattedData;
+    return formattedData;
 }
 
-app.get('/', async (req, res) => {
+app.get('/all', async (req, res) => {
     try {
         const [a, b, c] = await Promise.all([
             getDataMahasiswa1(),
