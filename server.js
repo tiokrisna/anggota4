@@ -47,7 +47,25 @@ async function getDataMahasiswa2() {
      }));
 
      return formattedData;
- }
+}
+
+app.get('/', async (req, res) => {
+    try {
+        const [a, b, c] = await Promise.all([
+            getDataMahasiswa1(),
+            getDataMahasiswa2(),
+            getDataMahasiswa3()
+        ]);
+        const merged = [...a, ...b, ...c];
+
+        res.json({tioMukti:
+             'project api',
+              data: merged});
+
+    } catch (error) {
+        res.status(500).send('Terjadi kesalahan: ' + error.message);
+    }
+});
 
 
 app.get('/vendor-a', async (req, res) => {
