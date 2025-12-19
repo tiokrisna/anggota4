@@ -40,7 +40,7 @@ async function getDataMahasiswa3() {
      const data = await res.json();
      const formattedData = data.map(item => ({
          id: item.id,
-         nama: `${item.name}${item.category == "Food" ? " (Recommended)" : ""}`,
+         nama: `${item.details.name}${item.details.category == "Food" ? " (Recommended)" : ""}`,
          harga_final: item.price,
          status: (item.stock <= 0) ? "TIdak Tersedia" : "Tersedia",
          sumber: "Vendor C",
